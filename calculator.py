@@ -9,41 +9,41 @@ from arithmetic import *
 
 # Your code goes here
 
+print "This calculator currently takes a max of 2 numbers per operation."
+
 while True:
     user_input = raw_input("> ")
     tokens = user_input.split(" ")
-    first_token = tokens[0]
+    operator = tokens[0]
     other_tokens = tokens[1:]
-    i = 0
-    arg_dict = {}
     try:
-        while i < len(other_tokens):
-            for token in other_tokens:
-                arg_dict[i] = float(token)
-                i += 1
-    except:
+        args = [float(token) for token in other_tokens]
+
+        # while i < len(other_tokens):
+        #     for token in other_tokens:
+        #         args[i] = float(token)
+        #         i += 1
+
+    except ValueError:
         print "Please enter valid numbers."
-    finally:
-        try:
-            if tokens[0] == 'q':
-                break
-            elif tokens[0] == '+':
-                print add(arg_dict[0], arg_dict[1])
-            elif tokens[0] == '-':
-                print subtract(arg_dict[0], arg_dict[1])
-            elif tokens[0] == '*':
-                print multiply(arg_dict[0], arg_dict[1])
-            elif tokens[0] == '/':
-                print divide(arg_dict[0], arg_dict[1])
-            elif tokens[0] == "square":
-                print square(arg_dict[0])
-            elif tokens[0] == "cube":
-                print cube(arg_dict[0])
-            elif tokens[0] == "pow":
-                print power(arg_dict[0], arg_dict[1])
-            elif tokens[0] == "mod":
-                print mod(arg_dict[0], arg_dict[1])
-            else:
-                print "Not a recognized operation."
-        except:
-            print "Enter numbers:"
+    else:
+        if operator == 'q':
+            break
+        elif operator == '+':
+            print add(*args)
+        elif operator == '-':
+            print subtract(*args)
+        elif operator == '*':
+            print multiply(*args)
+        elif operator == '/':
+            print divide(*args)
+        elif operator == "square":
+            print square(*args)
+        elif operator == "cube":
+            print cube(*args)
+        elif operator == "pow":
+            print power(*args)
+        elif operator == "mod":
+            print mod(*args)
+        else:
+            print "Not a recognized operation."
