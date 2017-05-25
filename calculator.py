@@ -12,28 +12,38 @@ from arithmetic import *
 while True:
     user_input = raw_input("> ")
     tokens = user_input.split(" ")
+    first_token = tokens[0]
+    other_tokens = tokens[1:]
+    i = 0
+    arg_dict = {}
     try:
-        arg1, arg2 = float(tokens[1]), float(tokens[2])
-    except IndexError:
-        arg1 = float(tokens[1])
+        while i < len(other_tokens):
+            for token in other_tokens:
+                arg_dict[i] = float(token)
+                i += 1
+    except:
+        print "Please enter valid numbers."
     finally:
-        if tokens[0] == 'q':
-            break
-        elif tokens[0] == '+':
-            print add(arg1, arg2)
-        elif tokens[0] == '-':
-            print subtract(arg1, arg2)
-        elif tokens[0] == '*':
-            print multiply(arg1, arg2)
-        elif tokens[0] == '/':
-            print divide(arg1, arg2)
-        elif tokens[0] == "square":
-            print square(arg1)
-        elif tokens[0] == "cube":
-            print cube(arg1)
-        elif tokens[0] == "pow":
-            print power(arg1, arg2)
-        elif tokens[0] == "mod":
-            print mod(arg1, arg2)
-        else:
-            print "Not a recognized operation."
+        try:
+            if tokens[0] == 'q':
+                break
+            elif tokens[0] == '+':
+                print add(arg_dict[0], arg_dict[1])
+            elif tokens[0] == '-':
+                print subtract(arg_dict[0], arg_dict[1])
+            elif tokens[0] == '*':
+                print multiply(arg_dict[0], arg_dict[1])
+            elif tokens[0] == '/':
+                print divide(arg_dict[0], arg_dict[1])
+            elif tokens[0] == "square":
+                print square(arg_dict[0])
+            elif tokens[0] == "cube":
+                print cube(arg_dict[0])
+            elif tokens[0] == "pow":
+                print power(arg_dict[0], arg_dict[1])
+            elif tokens[0] == "mod":
+                print mod(arg_dict[0], arg_dict[1])
+            else:
+                print "Not a recognized operation."
+        except:
+            print "Enter numbers:"
